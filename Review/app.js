@@ -50,11 +50,35 @@ const info = document.querySelector("#info");
 const preBtn = document.querySelector("#prev-btn");
 const nextBtn = document.querySelector("#next-btn");
 
-let currentIndex = 1;
+let currentIndex = 0;
 window.addEventListener("DOMContentLoaded", function(){
     let item = reviewList[currentIndex];
     mainImg.src = item.img;
     foodName.textContent = item.name;
     type.textContent = item.type;
     info.textContent = item.text;
+})
+
+function showReview(index){
+    const item = reviewList[index];
+    mainImg.src = item.img;
+    foodName.textContent = item.name;
+    type.textContent = item.type;
+    info.textContent = item.text;
+}
+
+preBtn.addEventListener("click", function(){
+    currentIndex--;
+    if (currentIndex < 0){
+        currentIndex = reviewList.length -1
+    }
+    showReview(currentIndex);
+})
+
+nextBtn.addEventListener("click", function(){
+    currentIndex++;
+    if (currentIndex >= reviewList.length){
+        currentIndex =0;
+    }
+    showReview(currentIndex);
 })
